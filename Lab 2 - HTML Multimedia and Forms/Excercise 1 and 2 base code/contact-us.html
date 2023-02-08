@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Contact Us</h1>
-<a href="index.html">Home</a>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>Contact Us</h1>
+        <a href="index.html">Home</a>
 
-</body>
+        <form action="#">
+            <fieldset>
+                <legend>Fill this form</legend>
+                <div class="form-group">
+                    <label for="fullName"><b>Full Name</b></label>
+                    <input type="text" id="fullName" name="fullName"
+                        placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber"><b>Phone Number</b></label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber"
+                        placeholder="Enter your full phoneNumber" required>
+                </div>
+
+                <label for="">Gender</label>
+                <input type="radio" value="M" name="gender" id="male"><label
+                    for="male">Male</label>
+                <input type="radio" value="F" name="gender" id="female"> <label
+                    for="female">Female</label>
+                <br>
+
+                <select name="rating" id="rating">
+                    <option value="" disabled selected>Select your rating</option>
+                    <option value="4">Excellent</option>
+                    <option value="3">Very Good</option>
+                    <option value="2">Good</option>
+                    <option value="1">Poor</option>
+
+                </select>
+                <br>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+
+                <br><input type="submit">
+
+            </fieldset>
+        </form>
+
+    </body>
 </html>
