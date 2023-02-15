@@ -1,28 +1,92 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} */
-ul {
+}
+
+body {
+  margin: 1rem;
+}
+
+nav {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+nav img {
+  width: 20vh;
+}
+
+nav img {
+  height: 20vh;
+}
+nav ul {
   list-style: none;
 }
-a {
+nav a {
   text-decoration: none;
 }
-a:hover {
-  color: green;
-  background-color: violet;
+nav li {
+  margin-bottom: 0.2rem;
 }
 
+nav a:hover {
+  text-decoration: underline;
+  color: green;
+}
+
+p {
+  margin-bottom: 0.4rem;
+}
 p::first-letter {
   font-size: 2rem;
-  font-family: "Times New Roman", Times, serif;
-  color: red;
+}
+main ul {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+ul {
+  height: 300px;
+  width: 500px;
+  outline: 1px solid red;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.4rem;
 }
 
-p::after {
-  content: "<---------";
+.first {
+  /* align-self: flex-end; */
+  background-color: black;
 }
-a::before {
-  content: "$ ";
+nav li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ul li {
+  outline: 1px solid red;
+  width: 80px;
+  height: 40px;
+}
+
+/* detect which screen you are in */
+
+/* @media screen and (min-width: 400px) {
+  body {
+    background-color: brown;
+  }
+} */
+
+@media screen and (min-width: 600px) {
+  nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 10px;
+  }
 }
