@@ -11,10 +11,12 @@ header {
   /* text-align: center; */
   height: 10vh;
   border-bottom: 1px solid red;
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem; */
+  display: grid;
+  place-items: center;
 }
 
 header span {
@@ -39,21 +41,20 @@ nav a:hover {
 nav li {
   margin: 0.2rem;
 }
-
+.container {
+  height: 100vh;
+}
 main {
   background: url("../img/bg.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height: 70vh;
+  display: grid;
+  place-items: center;
 }
 .slogan {
   text-align: center;
-  /* padding-top: 2rem; */
+  padding-top: 2rem;
 }
 .sub-img {
   height: 40vh;
