@@ -65,7 +65,7 @@ const spliced = numbers.splice(2, 1, 100, "Abdulahi");
 console.log("spliced", spliced);
 console.log("Numbers", numbers);
 
-*/
+
 
 const numbers = [1, 2, 3, 4, 5];
 
@@ -81,11 +81,39 @@ const add2 = function (a, b) {
   return a + b;
 };
 
-function display(value) {
-  console.log(value);
-}
+const add3 = function (a, b, dis) {
+  const result = a + b;
+  dis(result);
+};
 
+const x = 10;
+const y = 20;
+const display = function (value) {
+  console.log(value);
+};
+const display2 = function (value) {
+  console.log("The value is ", value);
+};
 //first class citizens
 
-console.log(add(1, 2));
+console.log(add(x, y));
+console.log(add(10, 20));
 console.log(add2(1, 2));
+add3(1, 2, display);
+add3(1, 2, display2);
+*/
+
+function filter(numbers, filt) {
+  const filtered = [];
+  for (const n of numbers) {
+    if (filt(n)) filtered.push(n);
+  }
+  return filtered;
+}
+
+const numbers = [2, 3, 4, 5];
+filter(numbers, isEven);
+
+function isEven(n) {
+  return n % 2 == 0;
+}
