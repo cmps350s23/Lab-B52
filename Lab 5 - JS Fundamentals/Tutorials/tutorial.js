@@ -101,7 +101,68 @@ console.log(add(10, 20));
 console.log(add2(1, 2));
 add3(1, 2, display);
 add3(1, 2, display2);
-*/
+
+
+// function add(r, i) {
+//   console.log(r, i);
+// }
+// const u = 20;
+// add(12, 44);
+// add(u, 44);
+
+function filter(numbers, filt) {
+  const filtered = [];
+  for (const n of numbers) {
+    if (filt(n)) filtered.push(n);
+  }
+  return filtered;
+}
+const isEven = function (n) {
+  return n % 2 == 0;
+};
+
+const isNeg = function (n) {
+  return n < 0;
+};
+
+const numbers = [2, 3, 4, 5, -1, -5];
+console.log(filter(numbers, isEven));
+
+
+
+
+console.log(
+  filter([2, 3, 4, 5, -1, -5], function (n) {
+    return n % 2 != 0;
+  })
+);
+
+
+console.log(filter(numbers, isNeg));
+
+
+
+
+function square(x) {
+  return x ** 2;
+}
+function isEvenOrOdd(num) {
+  if (num % 2 == 0) 
+    return "Even";
+  return "Odd";
+}
+// Arrow function
+(x) => x ** 2;
+num => num % 2 == 0 ? "Even" : "Odd";
+
+function add(x, y) {
+  return x + y;
+}
+
+
+const isEven = function (n) {
+  return n % 2 == 0;
+};
 
 function filter(numbers, filt) {
   const filtered = [];
@@ -111,9 +172,35 @@ function filter(numbers, filt) {
   return filtered;
 }
 
-const numbers = [2, 3, 4, 5];
-filter(numbers, isEven);
+console.log(filter(numbers, (n) => n % 2 == 0));
+console.log(
+  filter(numbers, (n) => {
+    console.log("Hello");
+    return n % 2 != 0;
+  })
+);
 
-function isEven(n) {
-  return n % 2 == 0;
-}
+*/
+
+const numbers = [1, 21, 3, 4, 5, -1];
+
+const evenNumbers = numbers.filter((a) => a % 2 == 0);
+const foundElement = numbers.find((a) => a == 5);
+const elementIndex = numbers.findIndex((a) => a == 5);
+const mapElement = numbers.map((a) => a ** 2);
+
+console.log("FILTER", evenNumbers);
+console.log("FIND", foundElement);
+console.log("FIND-INDEX", elementIndex);
+console.log("MAP", mapElement);
+console.log("ORIGINAL ARRAY", numbers);
+
+// FIND THE 21
+
+const index = numbers.findIndex((a) => a == 21);
+numbers.splice(index, 1, 33);
+console.log("After deleting 21 and replacing by 33", numbers);
+
+const sumSquared = numbers.reduce((a, b) => a + b ** 2, 0);
+console.log(numbers);
+console.log("sumSquared", sumSquared);
