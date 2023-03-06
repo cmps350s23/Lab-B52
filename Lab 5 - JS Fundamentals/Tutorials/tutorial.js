@@ -180,7 +180,7 @@ console.log(
   })
 );
 
-*/
+
 
 const numbers = [1, 21, 3, 4, 5, -1];
 
@@ -204,3 +204,15 @@ console.log("After deleting 21 and replacing by 33", numbers);
 const sumSquared = numbers.reduce((a, b) => a + b ** 2, 0);
 console.log(numbers);
 console.log("sumSquared", sumSquared);
+
+const x = [1, 2, 3, [1, 2, [3]]];
+
+*/
+
+const numbers = [1, 2, 3, 4, 5, [1, 3, 74]];
+const flat = numbers.flat(Infinity);
+const max = numbers.flat(Infinity).reduce((a, b) => (a > b ? a : b));
+console.log(max);
+
+const avg = flat.reduce((a, b) => a + b) / flat.length;
+console.log(avg);
