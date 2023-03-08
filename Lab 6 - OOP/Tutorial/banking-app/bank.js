@@ -13,16 +13,56 @@ export function display() {
 }
 
 export function deposit(accountNo, amount) {
-    // const index = accounts.findIndex(acc => acc.accountNo == accountNo)
-    // if (index >= 0)
-    //     accounts[index].balance += amount
-    // else
-    //     console.log('Account does not exit');
+    const index = accounts.findIndex(acc => acc.accountNo == accountNo)
+    if (index >= 0)
+        accounts[index].balance += amount
+    else
+        console.log('Account does not exit');
 
+}
+
+
+export function withdraw(accountNo, amount) {
 
     const account = accounts.find(acc => acc.accountNo == accountNo)
     if (account)
-        account.balance += amount
+        account.balance -= amount
     else
         console.log('Account does not exit');
 }
+
+export function add(account) {
+    accounts.push(account)
+}
+
+
+export function toJSON() {
+    return JSON.stringify(accounts)
+}
+
+export function fromJSON(jsonAccounts) {
+    return JSON.parse(jsonAccounts)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
