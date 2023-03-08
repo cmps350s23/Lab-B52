@@ -3,7 +3,8 @@ import {
     deposit,
     withdraw,
     toJSON,
-    fromJSON
+    fromJSON,
+    sumBalance
 } from "./bank.js";
 
 display()
@@ -18,3 +19,5 @@ console.log(Math.floor(Math.random() * 1000));
 const jsonData = toJSON()
 console.log(jsonData);
 console.log(fromJSON(jsonData));
+console.log('Total ', sumBalance());
+

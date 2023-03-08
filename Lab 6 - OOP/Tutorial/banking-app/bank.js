@@ -35,6 +35,9 @@ export function add(account) {
     accounts.push(account)
 }
 
+export function sumBalance() {
+    return accounts.reduce((a, b) => a + b.balance, 0)
+}
 
 export function toJSON() {
     return JSON.stringify(accounts)
@@ -43,6 +46,10 @@ export function toJSON() {
 export function fromJSON(jsonAccounts) {
     return JSON.parse(jsonAccounts)
 }
+
+
+
+
 
 
 
