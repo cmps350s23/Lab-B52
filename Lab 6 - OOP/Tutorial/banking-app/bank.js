@@ -12,6 +12,10 @@ export function display() {
     console.log(accounts);
 }
 
+export function getAccount(accountNo) {
+    return accounts.find(acc => acc.accountNo == accountNo)
+}
+
 export function deposit(accountNo, amount) {
     const index = accounts.findIndex(acc => acc.accountNo == accountNo)
     if (index >= 0)
