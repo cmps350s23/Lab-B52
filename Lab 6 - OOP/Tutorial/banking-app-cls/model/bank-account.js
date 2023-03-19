@@ -11,6 +11,11 @@ export default class BankAccount {
         return this._balance
     }
 
+    setBalance(balance) {
+        this._balance = balance
+    }
+
+
     deposit(amount) {
         this._balance += amount
     }

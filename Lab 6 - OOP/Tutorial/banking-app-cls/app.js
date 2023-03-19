@@ -1,5 +1,10 @@
-import BankAccount from "./model/bank-account.js";
+import SavingAccount from "./model/saving-account.js";
 
-const account = new BankAccount(1200)
 
-console.log(account.toString());
+const accounts = [
+    new SavingAccount(10000),
+    new SavingAccount(20000),
+    new SavingAccount(30000),
+]
+
+accounts.forEach(acc => console.log(acc.toString()))
