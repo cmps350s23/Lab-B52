@@ -8,6 +8,9 @@ const factsArea = document.querySelector("#facts-area")
 const regionURL = 'https://restcountries.com/v3.1/region/'
 const countryURL = 'https://restcountries.com/v3.1/name/'
 
-function handleRegionChange() {
-    console.log(regionDL.value)
+async function handleRegionChange() {
+    const url = `${regionURL}${regionDL.value}`
+    const data = await fetch(url)
+    const countries = await data.json()
+    console.log(countries)
 }
