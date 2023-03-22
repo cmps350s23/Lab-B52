@@ -20,4 +20,20 @@ async function handleRegionChange() {
     countryDD.innerHTML = options
 }
 
-// handleCountryChange
+async function handleCountryChange() {
+    const url = `${countryURL}${countryDD.value}`
+    const data = await fetch(url)
+    const countries = await data.json()
+
+    const facts = changeCountryToFacts(countries[0])
+    factsArea.innerHTML = facts
+}
+
+function changeCountryToFacts(country) {
+    return `
+        <h2>Facts About ${country.name.common}</h2>
+        <img src="${country.flags.png}" alt="${country.flags.alt}">
+        <br>    
+        
+    `
+}
