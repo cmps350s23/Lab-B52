@@ -12,5 +12,12 @@ async function handleRegionChange() {
     const url = `${regionURL}${regionDL.value}`
     const data = await fetch(url)
     const countries = await data.json()
-    console.log(countries)
+    const options = countries.map(country => `
+        <option value="${country.name.common}">
+        ${country.name.common}</option>
+    `).join(' ')
+
+    countryDD.innerHTML = options
 }
+
+// handleCountryChange
