@@ -47,4 +47,20 @@ export default class AccountsRepo {
         const filteredAccounts = accounts.filter(acc => acc.accountNo != accNo)
         return await fs.writeJson(filePath, filteredAccounts)
     }
+    async addTransaction(transaction) {
+        transaction.accountNo = parseInt(transaction.accountNo.toString());
+        transaction.amount = parseInt(transaction.amount.toString());
+        try {
+            const accounts = await this.getAccounts();
+            const account = accounts.find(account => account.accountNo == transaction.accountNo);
+            if (transaction.transType == 'Deposit') {
+                account.deposit(transaction.amount);
+            } else {
+                account.withdraw(transaction.amount);
+            }
+            return await fs.writeJson(filePath, accounts)
+        } catch (err) {
+            throw err;
+        }
+    }
 }
