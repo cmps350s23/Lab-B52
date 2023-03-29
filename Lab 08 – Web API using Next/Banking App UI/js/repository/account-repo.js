@@ -1,4 +1,4 @@
-const baseUrl = 'https://banking-app-three.vercel.app/api/accounts/'
+const baseUrl = 'http://localhost:3002/api/accounts/'
 
 class AccountRepo {
     //returns all the accounts depending on the type the user selected

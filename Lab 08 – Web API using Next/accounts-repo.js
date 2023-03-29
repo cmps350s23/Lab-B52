@@ -5,7 +5,7 @@ import path from 'path'
 
 export default class AccountsRepo {
     constructor() {
-        this.path = 'app/data/accounts.json'
+        this.path = path.join(process.cwd(), 'app/data/accounts.json')
         console.log(this.path);
     }
 
@@ -28,12 +28,13 @@ export default class AccountsRepo {
 
     async updateAccount(account) {
         const accounts = await fs.readJson(this.path)
-        const index = accounts.findIndex(account => account.accountNo == account.accountNo)
+        const index = accounts.findIndex(acc => acc.accountNo == account.accountNo)
         if (index > 0) {
             accounts[index] = account
-            return await fs.writeJson(this.path, accounts)
+            await fs.writeJson(this.path, accounts)
+            return "updated successfully"
         }
-        return null
+        return "Unable to update account because it does not exist"
     }
 
     async getAccount(accNo) {
@@ -45,6 +46,23 @@ export default class AccountsRepo {
     async deleteAccount(accNo) {
         const accounts = await fs.readJson(this.path)
         const filteredAccounts = accounts.filter(acc => acc.accountNo != accNo)
-        return await fs.writeJson(filePath, filteredAccounts)
+        await await fs.writeJson(this.path, filteredAccounts)
+        return "deleted successfully"
+    }
+    async addTransaction(transaction) {
+        transaction.accountNo = parseInt(transaction.accountNo.toString());
+        transaction.amount = parseInt(transaction.amount.toString());
+        try {
+            const accounts = await this.getAccounts();
+            const account = accounts.find(account => account.accountNo == transaction.accountNo);
+            if (transaction.transType == 'Deposit') {
+                account.deposit(transaction.amount);
+            } else {
+                account.withdraw(transaction.amount);
+            }
+            return await fs.writeJson(filePath, accounts)
+        } catch (err) {
+            throw err;
+        }
     }
 }
