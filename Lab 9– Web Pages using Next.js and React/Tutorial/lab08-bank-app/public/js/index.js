@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function handleLoadAccounts(acctType) {
     try {
-        const accounts = await accountRepo.getAccounts(acctType)
+        const accounts = await accountRepo.getAccounts(acctType);
+
         document.querySelector('#accounts-table').innerHTML =
             `<table id="accounts">
                 <tr>
