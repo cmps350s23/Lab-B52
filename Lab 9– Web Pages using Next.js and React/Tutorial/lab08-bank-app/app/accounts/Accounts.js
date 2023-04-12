@@ -1,13 +1,15 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../page.module.css'
 
 export default function Accounts({ initialAccounts }) {
+    const [accounts, setAccounts] = useState(initialAccounts)
 
     async function handleTypeChange(e) {
         const response = await fetch(`/api/accounts?type=${e.target.value}`)
-        const accounts = await response.json()
-        console.log(accounts);
+        const filteredAccounts = await response.json()
+        setAccounts(filteredAccounts)
+
     }
 
     return (
@@ -18,6 +20,9 @@ export default function Accounts({ initialAccounts }) {
                 <option value="Saving">Saving</option>
                 <option value="Current">Current</option>
             </select>
+
+            {accounts.map(account => <h1>{account.accountNo} </h1>)}
+
         </div>
     )
 }

@@ -7,7 +7,8 @@ const accountsRepo = new AccountsRepo()
 const inter = Inter({ subsets: ['latin'] })
 
 export default async function Home() {
-  const accounts = accountsRepo.getAccounts()
+  const accounts = await accountsRepo.getAccounts()
+
   return (
     <>
       <Accounts initialAccounts={accounts}></Accounts>
