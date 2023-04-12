@@ -21,7 +21,20 @@ export default function Accounts({ initialAccounts }) {
                 <option value="Current">Current</option>
             </select>
 
-            {accounts.map(account => <h1>{account.accountNo} </h1>)}
+            <table id="accounts">
+                <thead>
+                    <tr>
+                        <th>Account No</th>
+                        <th>Account Type</th>
+                        <th>Balance</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {/* {accounts.map(account => <tr>{account.accountNo} </tr>)} */}
+                </tbody>
+            </table>
+
 
         </div>
     )
