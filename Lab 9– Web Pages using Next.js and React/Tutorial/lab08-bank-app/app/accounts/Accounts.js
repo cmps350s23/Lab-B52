@@ -3,8 +3,11 @@ import React from 'react'
 import styles from '../page.module.css'
 
 export default function Accounts({ initialAccounts }) {
-    function handleTypeChange(e) {
-        alert(e.target.value)
+
+    async function handleTypeChange(e) {
+        const response = await fetch(`/api/accounts?type=${e.target.value}`)
+        const accounts = await response.json()
+        console.log(accounts);
     }
 
     return (
