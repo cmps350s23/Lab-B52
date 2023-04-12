@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import styles from '../page.module.css'
+import Account from './Account'
 
 export default function Accounts({ initialAccounts }) {
     const [accounts, setAccounts] = useState(initialAccounts)
@@ -21,7 +22,7 @@ export default function Accounts({ initialAccounts }) {
                 <option value="Current">Current</option>
             </select>
 
-            <table id="accounts">
+            <table id="accounts" className={styles.table}>
                 <thead>
                     <tr>
                         <th>Account No</th>
@@ -31,7 +32,10 @@ export default function Accounts({ initialAccounts }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {accounts.map(account => <tr>{account.accountNo} </tr>)} */}
+                    {
+                        accounts.map(account =>
+                            <Account account={account}></Account>
+                        )}
                 </tbody>
             </table>
 
