@@ -9,6 +9,12 @@
   padding: 1em;
 }
 
+.nav {
+  padding: 1rem;
+  background-color: antiquewhite;
+  margin-bottom: 0.5rem;
+}
+
 .form select,
 .form input {
   border: 1px solid #c9e6ff;

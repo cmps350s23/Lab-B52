@@ -1,9 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
+import styles from '../page.module.css'
 
 export default function NavBar() {
     return (
-        <nav>
+        <nav className={styles.nav}>
             <ul>
                 <li>Alpha Bank</li>
                 <li>
