@@ -12,6 +12,20 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
       </head>
       <body>
+        <nav>
+          <ul>
+            <li>Alpha Bank</li>
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li >
+              <a href="#">Add Account</a>
+            </li>
+            <li >
+              <a href="#">Add Transaction</a>
+            </li>
+          </ul>
+        </nav>
         {children}
       </body>
     </html>
