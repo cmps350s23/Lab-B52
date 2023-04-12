@@ -1,6 +1,6 @@
 const baseUrl = '/api/accounts'
 
-class AccountRepo {
+class AccountService {
     //returns all the accounts depending on the type the user selected
     async getAccounts(acctType) {
         const response = await fetch(`/api/accounts?type=${acctType}`)
@@ -14,6 +14,7 @@ class AccountRepo {
     }
 
     async addAccount(account) {
+
         const response = await fetch('/api/accounts', {
             method: 'POST',
             headers: {
@@ -24,12 +25,25 @@ class AccountRepo {
     }
 
     async updateAccount(account) {
-
+        const response = await fetch(`/api/accounts/${account.accountNo}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(account)
+        })
     }
 
     async addTrans(trans) {
-
+        console.log(trans);
+        const response = await fetch(`/api/accounts/${trans.accountNo}/trans`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(trans)
+        })
     }
 }
 
-export default new AccountRepo()
+export default new AccountService()
