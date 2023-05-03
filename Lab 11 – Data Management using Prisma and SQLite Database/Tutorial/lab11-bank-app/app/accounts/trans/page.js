@@ -11,6 +11,7 @@ export default function Transaction() {
 
     async function handleTransaction(e) {
         e.preventDefault()
+        transaction.amount = Number(transaction.amount)
         const response = await fetch(`/api/accounts/${transaction.accountNo}/trans`, {
             method: 'POST',
             body: JSON.stringify(transaction),

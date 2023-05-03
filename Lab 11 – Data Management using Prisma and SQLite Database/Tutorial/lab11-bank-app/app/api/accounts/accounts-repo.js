@@ -30,6 +30,7 @@ export default class AccountsRepo {
 
     async addAccount(account) {
         try {
+            console.log(account);
             return await prisma.account.create({ data: account })
         } catch (error) {
             return { error: error.message }
@@ -70,14 +71,20 @@ export default class AccountsRepo {
 
         try {
             const account = await this.getAccount(accountNo)
+            console.log('before', transaction);
+
+            console.log(transaction);
 
             if (transaction.transType == 'Deposit')
-                account.balance += parseInt(transaction.amount);
+                account.balance += transaction.amount;
             else
-                account.balance -= parseInt(transaction.amount);
+                account.balance -= transaction.amount;
 
             await this.updateAccount(account, accountNo)
-            return await prisma.transaction.create({ data: transaction })
+            const newTransaction = await prisma.transaction.create({ data: transaction })
+            console.log(newTransaction);
+
+            return newTransaction
 
         } catch (err) {
             return {
