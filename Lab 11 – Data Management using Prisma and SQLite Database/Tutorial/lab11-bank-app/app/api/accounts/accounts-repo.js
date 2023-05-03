@@ -3,8 +3,8 @@ import fs from 'fs-extra'
 import { nanoid } from 'nanoid'
 import path from 'path'
 
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 
 export default class AccountsRepo {
@@ -14,10 +14,9 @@ export default class AccountsRepo {
 
     async getAccounts(type) {
         try {
-
-
+            const accounts = await prisma.account.findMany()
+            return accounts
         }
-
         catch (err) {
             console.log(err);
             return { error: err.message }
@@ -27,7 +26,7 @@ export default class AccountsRepo {
 
     async addAccount(account) {
         try {
-
+            return await prisma.account.create({ data: account })
         } catch (error) {
             return { error: error.message }
         }
