@@ -6,6 +6,7 @@ import path from 'path'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
+// DATABASE_URL="file:./dev.db"
 
 export default class AccountsRepo {
     constructor() {
@@ -14,8 +15,11 @@ export default class AccountsRepo {
 
     async getAccounts(type) {
         try {
-            const accounts = await prisma.account.findMany()
-            return accounts
+            if (type == 'Saving' || type == 'Current')
+                return await prisma.account.findMany({ where: { acctType: type } })
+
+            return await prisma.account.findMany()
+
         }
         catch (err) {
             console.log(err);
