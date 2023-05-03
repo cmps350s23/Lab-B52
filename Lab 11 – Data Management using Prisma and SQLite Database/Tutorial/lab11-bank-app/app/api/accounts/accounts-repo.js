@@ -38,7 +38,10 @@ export default class AccountsRepo {
 
     async updateAccount(account, accountNo) {
         try {
-
+            return await prisma.account.update({
+                where: { accountNo },
+                data: account
+            })
         } catch (err) {
             return { error: err.message }
         }
@@ -46,7 +49,7 @@ export default class AccountsRepo {
 
     async getAccount(accNo) {
         try {
-
+            return await prisma.account.findUnique({ where: { accountNo: accNo } })
         } catch (err) {
             return { error: err.message }
         }
@@ -54,7 +57,7 @@ export default class AccountsRepo {
 
     async deleteAccount(accNo) {
         try {
-
+            return await prisma.account.delete({ where: { accountNo: accNo } })
             return "deleted successfully"
         } catch (err) {
             console.log(err);
@@ -66,7 +69,15 @@ export default class AccountsRepo {
     async addTransaction(transaction, accountNo) {
 
         try {
+            const account = await this.getAccount(accountNo)
 
+            if (transaction.transType == 'Deposit')
+                account.balance += parseInt(transaction.amount);
+            else
+                account.balance -= parseInt(transaction.amount);
+
+            await this.updateAccount(account, accountNo)
+            return await prisma.transaction.create({ data: transaction })
 
         } catch (err) {
             return {
