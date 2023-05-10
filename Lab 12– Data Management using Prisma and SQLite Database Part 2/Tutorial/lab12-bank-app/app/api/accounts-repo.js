@@ -14,7 +14,8 @@ export default class AccountsRepo {
 
     async getAccounts(type) {
         try {
-            await this.getOwners()
+
+
             let accounts = []
             if (type == 'Savings' || type == 'Current') {
                 console.log('I am inside getAccounts trying to query the database', type);
@@ -180,6 +181,27 @@ export default class AccountsRepo {
             return { error: error.message }
         }
     }
+
+    async getTrans(accountNo, fromDate, toDate) {
+        try {
+            const transactions = await prisma.transaction.findMany({
+                where: {
+                    accountNo,
+                    date: {
+                        gte: new Date('2021-05-16T10:00:00.000Z').toISOString(),
+                        lte: new Date('2023-11-16T10:00:00.000Z').toISOString()
+                    }
+
+                }
+            })
+            console.log(transactions);
+
+            return transactions
+        } catch (error) {
+            console.log(error);
+            return { error: error.message }
+        }
+    }
     async getTransSum(accountNo, fromDate, toDate) {
         try {
 
@@ -220,5 +242,5 @@ export default class AccountsRepo {
 
 const accountsRepo = new AccountsRepo()
 
-accountsRepo.searchOwner('John')
-    // .then(owner => console.log(JSON.stringify(owner, null, 2)))
+// accountsRepo.searchOwner('o')
+accountsRepo.getTrans('rsfrg2fprksfrg2fpt')

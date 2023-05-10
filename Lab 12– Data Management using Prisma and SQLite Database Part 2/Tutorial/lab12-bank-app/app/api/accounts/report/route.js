@@ -12,7 +12,8 @@ export async function POST(request) {
 
     const query = await request.json()
     // console.log(query);
-    const report = await repo.getTransSum(query.ownerId)
+    const report = await repo.searchOwner('John')
+    console.log(report);
     return Response.json(report)
 
 }
