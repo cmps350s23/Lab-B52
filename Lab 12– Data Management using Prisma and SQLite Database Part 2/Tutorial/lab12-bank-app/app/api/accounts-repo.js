@@ -105,7 +105,6 @@ export default class AccountsRepo {
         transaction.amount = parseInt(transaction.amount.toString());
         try {
             const account = await this.getAccount(accountNo);
-            console.log(account);
 
             if (transaction.transType == 'Deposit')
                 account.balance += parseInt(transaction.amount);
@@ -136,6 +135,37 @@ export default class AccountsRepo {
         try {
             const owners = await prisma.owner.findMany()
             return owners
+        } catch (error) {
+            console.log(error);
+            return { error: error.message }
+        }
+    }
+
+    async deleteOwner(ownerId) {
+
+        try {
+            const query = {
+                where: { id: ownerId }
+            }
+
+            const count = await prisma.owner.delete(query)
+        } catch (error) {
+            console.log(error);
+            return { error: error.message }
+        }
+    }
+    async searchOwner(name) {
+
+        try {
+            const owner = await prisma.owner.findMany({
+                where: {
+                    firstName: {
+                        contains: name
+                    }
+                }
+            })
+            console.log(owner);
+            return owner
         } catch (error) {
             console.log(error);
             return { error: error.message }
@@ -186,3 +216,9 @@ export default class AccountsRepo {
     }
 }
 
+
+
+const accountsRepo = new AccountsRepo()
+
+accountsRepo.searchOwner('John')
+    // .then(owner => console.log(JSON.stringify(owner, null, 2)))
