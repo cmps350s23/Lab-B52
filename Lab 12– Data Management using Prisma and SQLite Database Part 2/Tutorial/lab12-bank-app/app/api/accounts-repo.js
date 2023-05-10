@@ -212,7 +212,13 @@ export default class AccountsRepo {
     }
     async getAvgBalance() {
         try {
+            const avgBalance = await prisma.account.groupBy({
+                by: ['acctType'],
+                _avg: { balance: true }
+            })
 
+            console.log(avgBalance);
+            return avgBalance
         } catch (error) {
             console.log(error);
             return { error: error.message }
@@ -243,4 +249,5 @@ export default class AccountsRepo {
 const accountsRepo = new AccountsRepo()
 
 // accountsRepo.searchOwner('o')
-accountsRepo.getTrans('rsfrg2fprksfrg2fpt')
+// accountsRepo.getTrans('rsfrg2fprksfrg2fpt')
+accountsRepo.getAvgBalance()
