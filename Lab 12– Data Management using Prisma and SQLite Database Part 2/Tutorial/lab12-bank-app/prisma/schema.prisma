@@ -24,8 +24,9 @@ model Account {
   acctType     String
   balance      Float
   transactions Transaction[]
-  Owner        Owner         @relation(fields: [ownerId], references: [id])
-  ownerId      String
+
+  Owner   Owner  @relation(fields: [ownerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  ownerId String
 }
 
 model Transaction {

@@ -134,7 +134,8 @@ export default class AccountsRepo {
     async getOwners() {
 
         try {
-
+            const owners = await prisma.owner.findMany()
+            return owners
         } catch (error) {
             console.log(error);
             return { error: error.message }
