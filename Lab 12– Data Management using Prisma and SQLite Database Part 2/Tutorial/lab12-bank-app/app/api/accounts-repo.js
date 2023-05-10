@@ -204,6 +204,21 @@ export default class AccountsRepo {
     }
     async getTransSum(accountNo, fromDate, toDate) {
         try {
+            const transSum = await prisma.transaction.groupBy({
+                where: {
+                    accountNo,
+                    date: {
+                        gte: new Date(fromDate).toISOString(),
+                        lte: new Date(toDate).toISOString()
+                    }
+                },
+                by: ['transType'],
+                _sum: { amount: true },
+                orderBy: { _sum: { amount: 'desc' } }
+            })
+
+            console.log(transSum);
+            return transSum
 
         } catch (error) {
             console.log(error);
@@ -227,7 +242,12 @@ export default class AccountsRepo {
 
     async getMinMaxBalance() {
         try {
-
+            const minMax = await prisma.account.aggregate({
+                _max: { balance: true },
+                _min: { balance: true }
+            })
+            console.log(minMax);
+            return minMax
         } catch (error) {
             console.log(error);
             return { error: error.message }
@@ -236,6 +256,12 @@ export default class AccountsRepo {
 
     async getTop3Accounts() {
         try {
+            const top3 = await prisma.account.findMany({
+                orderBy: { balance: 'desc' },
+                take: 3
+            })
+            console.log(top3);
+            return top3
 
         } catch (error) {
             console.log(error);
@@ -250,4 +276,7 @@ const accountsRepo = new AccountsRepo()
 
 // accountsRepo.searchOwner('o')
 // accountsRepo.getTrans('rsfrg2fprksfrg2fpt')
-accountsRepo.getAvgBalance()
+// accountsRepo.getAvgBalance()
+// accountsRepo.getMinMaxBalance()
+// accountsRepo.getTop3Accounts()
+accountsRepo.getTransSum('asw2rtyuio0', '2020-08-17T10:00:00.000Z', '2022-08-17T10:00:00.000Z')
