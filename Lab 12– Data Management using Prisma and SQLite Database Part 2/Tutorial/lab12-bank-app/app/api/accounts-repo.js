@@ -175,6 +175,16 @@ export default class AccountsRepo {
 
     async getOwnerReport(ownerId) {
         try {
+            const owner = await prisma.owner.findUnique({
+                where: { id: ownerId },
+                include: {
+                    accounts: {
+                        include: { transactions: true }
+                    }
+                }
+            })
+            console.log(JSON.stringify(owner, null, 2));
+            return owner
 
         } catch (error) {
             console.log(error);
@@ -279,4 +289,5 @@ const accountsRepo = new AccountsRepo()
 // accountsRepo.getAvgBalance()
 // accountsRepo.getMinMaxBalance()
 // accountsRepo.getTop3Accounts()
-accountsRepo.getTransSum('asw2rtyuio0', '2020-08-17T10:00:00.000Z', '2022-08-17T10:00:00.000Z')
+// accountsRepo.getTransSum('asw2rtyuio0', '2020-08-17T10:00:00.000Z', '2022-08-17T10:00:00.000Z')
+accountsRepo.getOwnerReport('ckockkdifg2fpt')
