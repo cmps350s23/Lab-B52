@@ -1,46 +1,14 @@
 'use client'
+import { createUser } from '../actions/users'
 import styles from './page.module.css'
 
 export default function Register() {
-
-    // const handleSubmit = async (formData) => registerUser(formData)
-
-
-    async function handleSubmit(event) {
-
-
-        event.preventDefault()
-        const user = {
-            name: event.currentTarget.name.value,
-            email: event.currentTarget.email.value,
-            password: event.currentTarget.password.value
-        }
-        // Send email and password to your API route
-
-        console.log('email: ', user.email);
-        console.log('password: ', user.password);
-
-        const response = await fetch('/api/user', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(user)
-        })
-
-        const data = await response.json()
-        if (data.error)
-            alert(data.error);
-        else
-            alert('User registered successfully');
-
-        router.push('/login');
-
-    }
 
     return (
         <div className={styles.container}>
             <h2 className={styles.registerTitle}>Register</h2>
 
-            <form className={styles.registerForm} action={handleSubmit}>
+            <form className={styles.registerForm} action={createUser}>
                 <div>
                     <label htmlFor="name">Name </label>
                     <input

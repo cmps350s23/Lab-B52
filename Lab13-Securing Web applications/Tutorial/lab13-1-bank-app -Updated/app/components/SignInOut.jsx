@@ -10,6 +10,7 @@ export default function SignInOut() {
     if (session)
         return (
             <div>
+                {console.log(JSON.stringify(session.user), null, 2)}
                 <button className="btn btn-secondary" onClick={signOut}>
                     <span class="badge bg-danger">{session.user.name}</span> Sign Out</button>
             </div>
