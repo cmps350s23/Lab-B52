@@ -1,4 +1,5 @@
 'use server'
+
 import { redirect } from 'next/navigation'
 import * as repo from '../api/users/user-repo'
 
@@ -8,3 +9,5 @@ export const createUser = async (formData) => {
     await repo.createUser(user)
     redirect('/login')
 }
+
+export const loginUser = async (email, password) => await repo.getUser(email, password)
